@@ -1,0 +1,17 @@
+
+.dice-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.dice-display img {
+    width: 400px;
+}
+
+.dice-display h1 {
+    position: absolute;
+    padding-bottom: 20px;
+    font-size: xxx-large;
+}
