@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 
-const Modifier = ({setDisplay, maxValue}) => {
+const Modifier = ({onSubmit, maxValue}) => {
 
 
     const [modifier, setModifier] = useState(1);
@@ -10,7 +10,7 @@ const Modifier = ({setDisplay, maxValue}) => {
     const onFormSubmit = (event => {
         event.preventDefault();
         let currVal = roll(maxValue, modifier)
-        setDisplay(currVal, maxValue);
+        onSubmit(currVal, maxValue);
 
         //how to solve 'property 'state' of undefined...':
         //1. Function binding in constructor
