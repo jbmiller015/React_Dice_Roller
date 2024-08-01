@@ -3,8 +3,6 @@ import {imageSelector} from "../images/ImageSelector";
 import './DisplayDice.css';
 
 const DisplayDice = ({value, maxVal}) => {
-    console.log(maxVal)
-
     return (
         <div className="dice-display">
             <img src={imageSelector(maxVal)} alt="die"/>
