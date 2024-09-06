@@ -6,29 +6,47 @@ import DisplayDice from "./DisplayDice";
 class App extends Component {
 
     state = {
-        currentVal: null,
+        currentVal: [],
         maxValues: [20, 12, 10, 8, 6, 4, 2],
-        currentMaxVal: null
+        total: 0
     }
 
 
-    setDisplay = (val, maxVal) => {
-        this.setState({currentVal: val, currentMaxVal: maxVal});
+    setDisplay = (val, idx) => {
+        if (val === 'clear') {
+            this.setState((prev) => ({...prev, currentVal: [], total: 0}));
+        } else {
+            this.setState((prev) => ({...prev, currentVal: [...prev.currentVal, val]}));
+        }
+
+    }
+
+    dice = () => {
+        return this.state.currentVal.map((val) => <DisplayDice maxVal={val}/>)
     }
 
 
     render() {
         return (
-            <div className="ui container grid" style={{marginTop: "10px"}}>
-                <div className="ui row">
-                    <div className="column six wide">
-                        <DiceList setDisplay={this.setDisplay} maxValues={this.state.maxValues}/>
-                    </div>
-                    <div className="column eight wide">
-                        <DisplayDice value={this.state.currentVal} maxVal={this.state.currentMaxVal}/>
+            <>
+                <h1>Click a die button, then click the die to roll</h1>
+                <div style={{marginTop: "10px", display: "flex", flexDirection: 'row'}}>
+
+                    <DiceList setDisplay={this.setDisplay} maxValues={this.state.maxValues} total={this.state.total}/>
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            maxHeight: '100vh',
+                            maxWidth: '100vw',
+                            flexWrap: 'wrap'
+                        }}>
+                        {this.dice()}
                     </div>
                 </div>
-            </div>
+            </>
+
+
         );
     }
 }

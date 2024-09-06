@@ -1,25 +1,28 @@
-import React, {useEffect, useState} from 'react';
-import Modifier from "./Modifier";
+import React from 'react';
+
+const DiceList = ({setDisplay, maxValues, total}) => {
 
 
-const DiceList = ({setDisplay, maxValues}) => {
-
-
-    const renderList = maxValues.map((maxVal) => {
-        return (
-            <div className="item" key={maxVal} style={{width: '300px', justifyContent: 'center'}}>
-                <div className="left floated content">
-                    <Modifier onSubmit={setDisplay} maxValue={maxVal}/>
-                </div>
-
-            </div>
-        );
-    });
+    const renderList = maxValues.map((maxVal, idx) => <button key={idx} className="ui button primary"
+                                                              style={{margin: '2%'}}
+                                                              onClick={() => setDisplay(maxVal)}>{maxVal > 9 ? `D${maxVal}` : `D0${maxVal}`}</button>);
 
 
     return (
-        <div className="ui divided list">
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '20%',
+            height: '50%',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        }}>
             {renderList}
+            <br/>
+            <br/>
+            <button className="ui button"
+                    type="submit" onClick={() => setDisplay('clear')}>Clear
+            </button>
         </div>
     );
 
